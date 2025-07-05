@@ -1,6 +1,6 @@
 ## 🧠 Multi-Client UDP Word Guessing Game 
 
-A fast-paced, real-time word guessing game using UDP Sockets in C. Multiple clients connect to a central server over LAN. The server sends scrambled English words, and clients race to guess the original word. The fastest correct guess ends the round and earns a point.
+A fast-paced, real-time word guessing game using UDP Sockets in C. Multiple clients connect to a central server over LAN. The server sends scrambled English words, and clients race to guess the original word. The fastest correct guess ends the game.
 
 ## Features
 
@@ -8,15 +8,11 @@ A fast-paced, real-time word guessing game using UDP Sockets in C. Multiple clie
 
  - Name registration before gameplay
 
- - Scrambled 5-letter English word changes every round
+ - Scrambled 5-letter English word changes every game
 
- - First correct guess wins the round — broadcasted instantly to all clients
+ - First correct guess wins the game — broadcasted instantly to all clients
 
- - 5 Rounds per game with winner announced at the end
-
- - Late guesses receive “Too late” message after round ends
-
- - Multiple attempts allowed per round until someone wins
+ - Multiple attempts allowed until someone wins the game
 
 ## Project Structure
 ```
@@ -49,23 +45,21 @@ new/
 
 - Type your guess and hit enter.
 
-- If you’re correct, all players are notified and the next round starts.
+- If you’re correct, all players are notified that you have already guessed the correct word.
 
 ## Gameplay Flow
 
-- Game has 5 rounds.
+- Game has only 1 round.
 
-- Each round:
+- A random 5-letter English word is selected and scrambled.
 
-  - A random 5-letter English word is selected and scrambled.
+- All clients see the same scrambled word.
 
-  - All clients see the same scrambled word.
+- The first client to guess correctly wins the game.
 
-  - The first client to guess correctly wins that round.
+- Others are notified if they guess too late or incorrect.
 
-  - Others are notified if they guess too late.
 
-- After 5 rounds, the overall winner is announced based on number of wins.
 
 ## Graceful Shutdown
 - Use Ctrl+C to close the server or client safely.
