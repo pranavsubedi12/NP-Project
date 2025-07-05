@@ -1,4 +1,5 @@
-## 🧠 Multi-Client UDP Word Guessing Game 
+## 🧠 Multi-Client UDP Word Guessing Game
+
 
 A fast-paced, real-time word guessing game using UDP Sockets in C. Multiple clients connect to a central server over LAN. The server sends scrambled English words, and clients race to guess the original word. The fastest correct guess ends the game.
 
