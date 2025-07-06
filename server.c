@@ -5,7 +5,7 @@
 #include <arpa/inet.h>
 #include <time.h>
 
-#define MAX_CLIENTS 100
+#define MAX_CLIENTS 10
 #define MAX_ATTEMPTS 5
 #define PORT 5555
 
@@ -147,11 +147,13 @@ void process_message(int sockfd, char *msg, struct sockaddr_in *client_addr) {
 
         // Notify others
         char win_msg[256];
-        sprintf(win_msg, "%s has already guessed the correct word. The correct word is %s.", client->name, secret_word);
-        send_to_all(sockfd, win_msg, client_addr);
+        sprintf(feedback, "Too late! Game is over. The correct word '%s' was already guessed by %s.", secret_word, client->name);
+        send_to_all(sockfd, feedback, client_addr);
+        
 
         game_over = 1;
-    } else {
+    } 
+    else {
         char attempts_left[64];
         sprintf(attempts_left, "Attempts left: %d\n", MAX_ATTEMPTS - client->attempts);
         strcat(feedback, attempts_left);
@@ -159,6 +161,7 @@ void process_message(int sockfd, char *msg, struct sockaddr_in *client_addr) {
                (struct sockaddr *)client_addr, sizeof(*client_addr));
     }
 }
+
 
 int main() {
     int sockfd;
@@ -184,7 +187,7 @@ int main() {
 
     pick_random_word();
     printf("UDP Server started on port %d\n", PORT);
-    printf("Secret word chosen: %s\n", secret_word);  // <-- print secret word here
+    printf("Secret word chosen: %s\n", secret_word);  
 
     while (1) {
         socklen_t len = sizeof(client_addr);

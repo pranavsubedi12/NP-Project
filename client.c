@@ -49,7 +49,8 @@ int main() {
 
         if (strstr(buffer, "Congratulations!") ||
             strstr(buffer, "has won the game") ||
-            strstr(buffer, "The correct word was")) {
+            strstr(buffer, "The correct word was")||
+            strstr(buffer, "Too late! Game is over")) {
             break;
         }
     }
